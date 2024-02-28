@@ -6,33 +6,46 @@ import Title from './components/Title'
 import Button from './components/Button'
 import Button2 from './components/Button2'
 import {BrowserRouter as Router, Link, Outlet, Route, Routes} from 'react-router-dom'; 
-import Characters from './pages/Characters'
-
+import Characters from "./pages/Characters"
+import Home from "./pages/Home"
 
 function App() {
-  const [count, contador] = useState(0)
-  console.log(count); 
-  useEffect(() => {
-    console.log("useEffect is working!!!")
-  }, [count]);
+  // const [count, contador] = useState(0)
+  // console.log(count); 
+  // useEffect(() => {
+  //   console.log("useEffect is working!!!")
+  // }, [count]);
   
   return (
     <div className='App'>
-      <Button2 onClick={() => alert("I clicked")}/>
+      {/* <Button2 onClick={() => alert("I clicked")}/>
       <Button2 onClick={() => contador(count+1)} text={`+1`}/>
       <Button2 onClick={() => contador(0)} text={'reset count'}/>
       <Title text={count} />
-      
-      {/* <Router>
+       */}
+      <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />}/> 
-            <Route path="/" element={<Characters />} />
+            <Route path="/characters" element={<Characters />} />
           
           </Route>
         </Routes>
-      </Router> */}
+      </Router>
     </div>
-  );
+   );
+
+  }
+
+  function Layout(){
+    return (
+      <>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/characters">Characters</Link>
+      </nav>
+      <Outlet />
+      </>
+    )
   }
 export default App
